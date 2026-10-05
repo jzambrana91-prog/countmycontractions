@@ -1,0 +1,16 @@
+---
+import { guides } from "../data/site.js";
+
+const { current } = Astro.props;
+const others = guides.filter((guide) => guide.href !== current);
+---
+
+<nav class="related" aria-label="Related guides">
+  <h2>Keep reading</h2>
+  <ul>
+    <li><a href="/">Open the contraction timer</a></li>
+    {others.map((guide) => (
+      <li><a href={guide.href}>{guide.label}</a></li>
+    ))}
+  </ul>
+</nav>

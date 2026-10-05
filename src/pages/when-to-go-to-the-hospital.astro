@@ -1,0 +1,141 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MedicalNote from "../components/MedicalNote.astro";
+import AdSlot from "../components/AdSlot.astro";
+import Faq from "../components/Faq.astro";
+import Related from "../components/Related.astro";
+import Sources from "../components/Sources.astro";
+import { breadcrumbJsonLd, faqJsonLd } from "../data/site.js";
+
+const title = "When to Go to the Hospital in Labor | Count My Contractions";
+const description =
+  "A practical checklist for calling your provider or birth unit, including warning signs that should not wait for a 5-1-1 contraction pattern.";
+const path = "/when-to-go-to-the-hospital";
+
+const faqs = [
+  {
+    q: "Should I call before I drive in?",
+    a: "Unless you were told to come straight in, or birth seems imminent, a phone call is the usual first step. Your provider or maternity unit can tell you whether to come now, what to watch, or how to reach them after hours. Ask this during prenatal care so the plan is not new on the night.",
+  },
+  {
+    q: "What if I am sent home?",
+    a: "It happens often, and it is not a verdict on your pain or your preparation. Keep the contraction log, follow the specific advice you were given, and call again if the pattern changes or a warning sign appears.",
+  },
+  {
+    q: "I live far from the hospital. Do I use a different rule?",
+    a: "Maybe. Some clinicians suggest calling at a closer pattern, or leaving earlier, when the drive is long or a previous labor was fast. That instruction should come from your own provider. A general 5-1-1 description does not know your roads.",
+  },
+  {
+    q: "When do I call emergency services instead?",
+    a: "If you think the baby is coming now, you have a strong urge to push, or you can see the baby, call emergency services and follow their instructions. Do not spend that time looking for a contraction average.",
+  },
+];
+
+const sources = [
+  {
+    href: "https://www.acog.org/womens-health/faqs/how-to-tell-when-labor-begins",
+    label: "ACOG: How to Tell When Labor Begins",
+  },
+  {
+    href: "https://www.nhs.uk/pregnancy/labour-and-birth/signs-that-labour-has-begun/",
+    label: "NHS: Signs that labour has begun",
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  jsonLd={[
+    faqJsonLd(faqs),
+    breadcrumbJsonLd([
+      { name: "Contraction timer", path: "/" },
+      { name: "When to go to the hospital", path },
+    ]),
+  ]}
+>
+  <article class="wrap prose">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Timer</a></li>
+        <li aria-current="page">When to go to the hospital</li>
+      </ol>
+    </nav>
+    <p class="eyebrow">Call plan</p>
+    <h1>When to go to the hospital</h1>
+    <p class="lede">
+      The useful question is usually "when do I call?" The answer you were given in prenatal care comes first. A contraction pattern is only one part of it.
+    </p>
+    <MedicalNote />
+
+    <p>
+      ACOG's patient page lists a few situations to go to the hospital: your water has broken and you are not having contractions, you are bleeding heavily, you have constant severe pain with no relief between contractions, or you notice the baby moving less often. The same page suggests you decide ahead of time whether your provider wants a call first, how to reach someone after hours, and how long the trip actually takes, including traffic. NHS maternity guidance asks you to phone the midwife or unit if you think labour has started or contractions are regular and about every five minutes or closer, and it marks several symptoms as urgent rather than something to watch overnight.
+    </p>
+    <p>
+      Those two public sources are not identical, and your local unit may differ again. Read the lists below as a prompt for the call, not as permission to skip it. If a sentence here conflicts with your clinician, follow your clinician.
+    </p>
+
+    <h2>Call now, without waiting for a contraction pattern</h2>
+    <ul class="checklist">
+      <li>Your waters break, whether it is a gush or a trickle. Note the time and the color. Green, brown, bloody, or bad-smelling fluid needs to be mentioned right away.</li>
+      <li>You are bleeding from the vagina more than a mucus "show" streaked with pink. A show can be normal. Ongoing or heavy bleeding is a reason to call immediately.</li>
+      <li>The baby is moving less than usual for you. Use the movement plan your provider already gave you if you have one.</li>
+      <li>You are under 37 weeks and think contractions or labor may be starting.</li>
+      <li>A contraction lasts more than two minutes.</li>
+      <li>You are having six or more contractions in ten minutes.</li>
+      <li>Pain is constant, with little or no break, or you feel unwell in a way that scares you: a severe headache, vision changes, sudden swelling, trouble breathing, fever, or fainting.</li>
+    </ul>
+    <p>
+      NHS pages describe the contraction items — longer than two minutes, and six or more in ten minutes — as urgent reasons to speak to a midwife or doctor, including in the middle of the night. ACOG highlights heavy bleeding, broken waters without contractions, constant severe pain, and reduced movement as reasons to go in. You do not need to decide which list is more official while you are having a symptom. Make the call.
+    </p>
+    <p>
+      If you cannot reach your provider or birth unit, use the urgent-care route you were given. In the UK that may be 111 when the maternity line is unreachable. In an emergency, use your local emergency number. This website cannot place that call for you.
+    </p>
+
+    <h2>If birth seems to be happening now</h2>
+    <p>
+      A strong urge to push, pressure you cannot control, or a baby that is visible means you stop traveling and call emergency services. Say that you are pregnant and that birth may be imminent. Follow the dispatcher's instructions. Do not try to learn a delivery from a webpage in that moment, and do not drive yourself if the baby is coming. A partner's job then is the phone, a safe place to be, and calm help — not the contraction average. The <a href="/partner-guide">partner guide</a> repeats this so it is not only on this page.
+    </p>
+
+    <h2>The pattern that often leads to a call at term</h2>
+    <p>
+      If you are at term, the baby has been moving, the waters are intact, there is no bleeding, and you were not given a special plan, many U.S. educators suggest calling when contractions follow a 5-1-1 pattern: about every five minutes, lasting about a minute, for about an hour. Some hospitals teach 4-1-1 or 3-1-1 instead. NHS pages emphasize a regular pattern around every five minutes, plus the instruction to phone rather than simply arrive. The details live on the <a href="/5-1-1-rule">5-1-1 rule</a> page, and the measuring method lives on <a href="/how-to-time-contractions">how to time contractions</a>.
+    </p>
+    <p>
+      "Call" and "walk into triage without phoning" are different. Unless you were told to come directly, or you are in the urgent list above, the phone is the step that lets a clinician who knows your chart help you sort early labor from a reason to be seen. Have your weeks of pregnancy, your due date, the baby's movements, waters, bleeding, and a short contraction summary ready. The timer's copy button is built for that summary.
+    </p>
+    <p>
+      People who have given birth before sometimes move faster once labor is underway. That is a reason to ask, before labor, whether your call time should be earlier. It is not a statistic you need to apply to yourself from an article. If your provider said "do not wait for 5-1-1," they meant it.
+    </p>
+
+    <h2>A practical checklist before you leave</h2>
+    <p>
+      Do this thinking while you are still pregnant, then glance at it when you are told to come in.
+    </p>
+    <ul>
+      <li>The after-hours number, written on paper as well as in a phone.</li>
+      <li>The route, including a backup if the usual road clogs, and a rough sense of how long it takes. ACOG suggests rehearsing the trip.</li>
+      <li>A full tank, or a plan for a ride that does not depend on you driving while contracting.</li>
+      <li>Identification, insurance information if your system uses it, and any birth preferences you already wrote down.</li>
+      <li>Phone charger, glasses, and the contraction log — on the phone or the <a href="/printable-contraction-log">printed sheet</a>.</li>
+      <li>Anything your hospital listed for the baby, such as a car seat, if you expect to leave by car afterward. You do not need a perfect bag to be allowed to give birth.</li>
+    </ul>
+    <p>
+      Eat and drink only in the way your birthplace already advised. Guidance on food in labor is not the same everywhere. This page will not invent a menu. If you are told to stay home, rest is reasonable, and so is continuing the log.
+    </p>
+
+    <h2>If they say not yet</h2>
+    <p>
+      Being asked to wait at home is a common part of early labor, not a comment on how well you timed the contractions. Ask what should trigger the next call: a closer pattern, broken waters, bleeding, a change in the baby's movement, or simply a set time to check in. Write the answer in the notes of the timer or on the paper log. Then let the contractions be what they are. Irregular ones may fade. A steady pattern may declare itself. Either result is easier to describe if you did not throw the record away out of frustration.
+    </p>
+    <p>
+      Go back sooner than the planned check-in if a warning sign appears or if your instinct says this is different. You are allowed to call twice. The <a href="/braxton-hicks-vs-real-contractions">Braxton Hicks page</a> is there if the tightenings are uneven and you are trying to rest without ignoring them.
+    </p>
+
+    <Faq faqs={faqs} />
+    <Sources links={sources} />
+    <Related current={path} />
+  </article>
+  <AdSlot />
+</BaseLayout>

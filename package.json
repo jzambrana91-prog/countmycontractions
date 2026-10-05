@@ -1,0 +1,20 @@
+{
+  "name": "count-my-contractions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Free, private contraction timer and labor timing guides.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 4321",
+    "test": "TZ=UTC node --test",
+    "generate-assets": "python3 scripts/generate_assets.py"
+  },
+  "dependencies": {
+    "astro": "^5.14.4"
+  }
+}

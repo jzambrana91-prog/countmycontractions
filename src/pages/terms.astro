@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { breadcrumbJsonLd, contactEmail } from "../data/site.js";
+
+const title = "Terms of Use | Count My Contractions";
+const description =
+  "Terms for using the Count My Contractions timer and guides. The site is a timing aid, not medical advice, and it is provided without a warranty.";
+const path = "/terms";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  jsonLd={[breadcrumbJsonLd([{ name: "Contraction timer", path: "/" }, { name: "Terms", path }])]}
+>
+  <article class="wrap prose">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Timer</a></li>
+        <li aria-current="page">Terms</li>
+      </ol>
+    </nav>
+    <h1>Terms of use</h1>
+    <p>Last updated October 5, 2026.</p>
+    <p class="owner-note">
+      <strong>Owner placeholder.</strong> These are starter terms so the site is not published with a blank legal page. Have them reviewed, and add the governing law you want, before you rely on them or apply for advertising.
+    </p>
+    <p>
+      By using countmycontractions.com you agree to these terms. If you do not agree, do not use the site. The <a href="/medical-disclaimer">medical disclaimer</a> and <a href="/privacy">privacy policy</a> are part of the deal.
+    </p>
+
+    <h2>What the site is</h2>
+    <p>
+      Count My Contractions provides a contraction timer and general educational pages about timing contractions. It is a timing aid. It is not medical advice, not a medical device, and not a substitute for care from your midwife, doctor, or birth unit. The pattern banners describe the log you entered. They do not diagnose labor or tell you that it is safe to stay home.
+    </p>
+
+    <h2>Your responsibility</h2>
+    <p>
+      You are responsible for how you use the timer and for the decisions you make about calling a clinician or emergency services. Follow the instructions your own provider gave you when they differ from a general article. Do not ignore bleeding, broken waters, reduced baby movement, preterm contractions, or a sense that birth is imminent because a banner has not appeared.
+    </p>
+    <p>
+      Do not misuse the site: do not attempt to break it, probe it for data it does not hold, or present its pages as personalized medical advice from a clinician. You may print the log sheet for your own labor and share a link to the site. You may not copy the guides onto another site and present them as your own product.
+    </p>
+
+    <h2>No warranty</h2>
+    <p>
+      The site is provided as is and as available. The clock depends on your phone, your browser, and the times you enter. We do not warrant that the timer will be error-free, that a service worker will always restore the page offline, or that a pattern banner will match what a clinician would say. To the extent the law allows, we disclaim warranties of merchantability, fitness for a particular purpose, and non-infringement.
+    </p>
+
+    <h2>Limitation of liability</h2>
+    <p>
+      To the extent the law allows, Count My Contractions and its operator are not liable for indirect, incidental, special, consequential, or punitive damages, or for lost profits, arising from your use of the site. If a disclaimer of liability is not allowed where you live, the limitation applies only as far as the law permits. Nothing in these terms tries to limit liability that cannot legally be limited, including liability for death or personal injury caused by negligence where such a limit is prohibited.
+    </p>
+
+    <h2>Intellectual property</h2>
+    <p>
+      The text, layout, and logo of this site are owned by its operator unless a page says otherwise. The contraction data you enter is yours. It stays in your browser. We do not claim ownership of your log, and we do not receive a copy of it.
+    </p>
+
+    <h2>Changes and law</h2>
+    <p>
+      We may update the site and these terms by posting a new version. The date at the top will change. If you keep using the site after that, the new terms apply.
+    </p>
+    <p class="owner-note">
+      <strong>Governing law placeholder.</strong> Add the state, province, or country whose law should govern these terms, and the courts that should hear disputes, after a lawyer reviews this page.
+    </p>
+    <p>
+      Questions about these terms: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>. That mailbox is not monitored for medical emergencies.
+    </p>
+  </article>
+</BaseLayout>

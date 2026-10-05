@@ -1,0 +1,171 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MedicalNote from "../components/MedicalNote.astro";
+import AdSlot from "../components/AdSlot.astro";
+import Faq from "../components/Faq.astro";
+import Related from "../components/Related.astro";
+import Sources from "../components/Sources.astro";
+import { breadcrumbJsonLd, faqJsonLd } from "../data/site.js";
+
+const title = "How to Time Contractions (Start to Start) | Count My Contractions";
+const description =
+  "Learn how to time contractions: when to start the clock, how to measure frequency from start to start, and a worked example you can compare with your own log.";
+const path = "/how-to-time-contractions";
+
+const faqs = [
+  {
+    q: "When should I start timing contractions?",
+    a: "Start when they are coming often enough to wonder if there is a pattern, or when your provider told you to start. You do not need a log of every Braxton Hicks contraction across the last month. Once you start a session, keep it going long enough to see whether the spacing is stable.",
+  },
+  {
+    q: "Do I time from the peak or from the start?",
+    a: "Time from the start of the contraction until it eases. Frequency is then measured from that start to the next start. Timing only the strongest part makes contractions look shorter and farther apart than they are.",
+  },
+  {
+    q: "What do I say when I call my provider?",
+    a: "Give how many weeks you are, whether the baby is moving as usual, whether your waters have broken or you are bleeding, and a short run of recent contractions: start time, length, and how far apart the starts are. A one-hour picture is more useful than a single interval.",
+  },
+  {
+    q: "What if I miss a contraction?",
+    a: "Mark it as missed and keep going. A gap you admit is easier to read than a log that quietly skips ahead. Do not invent a time you did not see.",
+  },
+];
+
+const sources = [
+  {
+    href: "https://www.acog.org/womens-health/faqs/how-to-tell-when-labor-begins",
+    label: "ACOG: How to Tell When Labor Begins",
+  },
+  {
+    href: "https://www.nhs.uk/pregnancy/labour-and-birth/signs-that-labour-has-begun/",
+    label: "NHS: Signs that labour has begun",
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  jsonLd={[
+    faqJsonLd(faqs),
+    breadcrumbJsonLd([
+      { name: "Contraction timer", path: "/" },
+      { name: "How to time contractions", path },
+    ]),
+  ]}
+>
+  <article class="wrap prose">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Timer</a></li>
+        <li aria-current="page">How to time contractions</li>
+      </ol>
+    </nav>
+    <p class="eyebrow">A practical method</p>
+    <h1>How to time contractions</h1>
+    <p class="lede">
+      Start the clock when a contraction begins, stop it when the tightening eases, and measure how far apart they are from one start to the next start.
+    </p>
+    <MedicalNote />
+
+    <p>
+      Timing contractions is a household skill, not a test you can fail. The goal is a record someone else can read: a midwife on the phone, a doctor who was not in the room, or you, an hour later, when the night has blurred. The <a href="/">contraction timer</a> does the arithmetic. This page is the method behind the button, so a paper <a href="/printable-contraction-log">contraction log</a> and the phone stay in agreement.
+    </p>
+    <p>
+      ACOG's patient guidance describes labor contractions as a regular pattern that gets closer and often lasts about 60 to 90 seconds, and it says to call your provider if you think you are in labor. NHS maternity pages likewise suggest phoning if you think labour has started or if contractions are regular and about every five minutes or closer. A stopwatch does not replace that call.
+    </p>
+
+    <h2>When to bother timing</h2>
+    <p>
+      Early, irregular tightenings can show up for days or weeks. Timing every one of them usually produces a long list of uneven gaps and a tired support person. Wait until you notice a repeating rhythm, or until they are strong enough that you want a second opinion from your own notes. If your provider already told you to call at a certain point — for example because you live far away, had a fast labor before, or have a medical reason to come in sooner — follow that instruction and start the log when contractions become regular enough to describe.
+    </p>
+    <p>
+      Decide who presses the button before the room is dark. If you switch timekeepers, keep the same meaning of "start" and "stop."
+    </p>
+
+    <h2>Start, stop, and the three intervals</h2>
+    <p>
+      <strong>Duration</strong> is how long one contraction lasts. Begin at the first clear sign: the belly firming, the cramp building, the back pain that you already know is a contraction for you. Stop when that tightening lets go. Do not keep the clock running through the after-ache if the uterus has already softened, and do not start only when you can no longer talk. If the sign is ambiguous, choose the earliest moment you are willing to call "this is one" and stay consistent.
+    </p>
+    <p>
+      <strong>Frequency</strong> is start to start. If one contraction begins at 1:00 and the next begins at 1:07, the frequency is seven minutes, whatever happened in between. This is the number birth units mean when they say "every five minutes." It includes the contraction itself plus the rest.
+    </p>
+    <p>
+      <strong>Rest</strong> is the quiet interval, from the end of one contraction to the start of the next. It is useful, and it is not a substitute for frequency. People get into trouble by timing rest and then reporting it as "how far apart." A one-minute contraction with four minutes of rest is five minutes apart. A one-minute contraction with five minutes of rest is six minutes apart. Those are different answers to the same question.
+    </p>
+    <p>
+      You do not need a medical device. A phone clock, a wall clock with a second hand, or the timer on this site is enough. If you use a clock, write the start immediately. Reconstructing it after the contraction ends is how rows drift by a minute.
+    </p>
+
+    <h2>A worked example</h2>
+    <p>
+      Imagine a one-hour window that is still early. The times below are complete on purpose so you can check the math. None of this is "yours." It is a teaching table. In it, contractions are getting a little longer and a little closer, and they have not yet held a five-minute pattern for a full hour.
+    </p>
+    <div class="table-wrap">
+      <table>
+        <caption>Worked example. Apart is start to start. Rest is previous end to next start.</caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Start</th>
+            <th scope="col">End</th>
+            <th scope="col">Length</th>
+            <th scope="col">Apart</th>
+            <th scope="col">Rest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td><td>1:00:00</td><td>1:00:40</td><td>40 sec</td><td>—</td><td>—</td>
+          </tr>
+          <tr>
+            <td>2</td><td>1:10:00</td><td>1:10:45</td><td>45 sec</td><td>10 min</td><td>9 min 20 sec</td>
+          </tr>
+          <tr>
+            <td>3</td><td>1:18:00</td><td>1:18:50</td><td>50 sec</td><td>8 min</td><td>7 min 15 sec</td>
+          </tr>
+          <tr>
+            <td>4</td><td>1:25:00</td><td>1:26:05</td><td>1 min 5 sec</td><td>7 min</td><td>6 min 10 sec</td>
+          </tr>
+          <tr>
+            <td>5</td><td>1:31:00</td><td>1:32:05</td><td>1 min 5 sec</td><td>6 min</td><td>4 min 55 sec</td>
+          </tr>
+          <tr>
+            <td>6</td><td>1:36:30</td><td>1:37:35</td><td>1 min 5 sec</td><td>5 min 30 sec</td><td>4 min 25 sec</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      On row 6 the length is 65 seconds (1:36:30 to 1:37:35). Apart is 5 minutes 30 seconds, because the previous start was 1:31:00. Rest is 4 minutes 25 seconds, because the previous contraction ended at 1:32:05. "About five minutes" would have kept the frequency and lost the rest. Only the start-to-start number answers "how far apart?"
+    </p>
+    <p>
+      This sample also shows why a snapshot can mislead. The last interval is near five minutes and the length is over a minute, but the hour before that was ten minutes, then eight, then seven. A 5-1-1 style pattern, explained on the <a href="/5-1-1-rule">5-1-1 page</a>, asks whether that closer rhythm keeps going, not whether the most recent pair looked promising. If the next three contractions slid back to every ten minutes while you drank water and lay down, the notes should say so.
+    </p>
+
+    <h2>Mistakes that make a log hard to trust</h2>
+    <p>
+      Timing peak to peak, or calling the rest gap "how far apart," will not match the question you are asked. Rounding every row to five minutes hides the difference between four and seven. Skipping rows, or guessing a start you did not see, shifts every later number.
+    </p>
+    <p>
+      Two timekeepers cause the same trouble if one marks the first twinge and the other waits for the peak. Agree on the cue. The <a href="/partner-guide">partner guide</a> suggests "starting" and "eased" only if that check-in is welcome. A pause in the log is allowed. Do not tidy the grid before you call. Some contractions are mostly in the back, and some early labors stay uneven for a long time.
+    </p>
+
+    <h2>What to do with the numbers</h2>
+    <p>
+      Once you have a run of contractions, look at three questions. Are the lengths settling around a minute or growing? Are the starts getting closer, holding steady, or wandering? Has that picture lasted long enough that you are not describing a ten-minute coincidence? Then put the warning signs beside the table, not under it. Waters breaking, bleeding, a baby moving less, gestation under 37 weeks, a contraction longer than two minutes, or six or more contractions in ten minutes are reasons to contact your provider even if the spacing is still "early." The <a href="/when-to-go-to-the-hospital">hospital checklist</a> is the longer version of that sentence.
+    </p>
+    <p>
+      If you call, you might say: "I'm 39 weeks. Baby is moving as usual. No bleeding, waters have not broken. For the last hour the contractions have been starting about every six minutes and lasting about a minute. Before that they were ten minutes apart." That is a clearer report than "they're getting bad." If you use this site's timer, Copy for a text builds a similar summary from the rows you actually saved.
+    </p>
+    <p>
+      If you are asked to wait, keep the same log. Rest if the pattern fades, follow the food and drink instructions your birthplace already gave you, and do not rewrite the rows you already have.
+    </p>
+
+    <Faq faqs={faqs} />
+    <Sources links={sources} />
+    <Related current={path} />
+  </article>
+  <AdSlot />
+</BaseLayout>

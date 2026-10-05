@@ -1,0 +1,128 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MedicalNote from "../components/MedicalNote.astro";
+import AdSlot from "../components/AdSlot.astro";
+import Faq from "../components/Faq.astro";
+import Related from "../components/Related.astro";
+import Sources from "../components/Sources.astro";
+import { breadcrumbJsonLd, faqJsonLd } from "../data/site.js";
+
+const title = "The 5-1-1 Rule for Contractions | Count My Contractions";
+const description =
+  "What the 5-1-1 rule means, how 4-1-1 and 3-1-1 differ, and why your provider's own instructions matter more than any general pattern.";
+const path = "/5-1-1-rule";
+
+const faqs = [
+  {
+    q: "Does 5-1-1 mean I am in active labor?",
+    a: "No. It means the timing pattern many classes teach has shown up in the log. Active labor is a clinical description that includes how the cervix is changing. Only an examination can measure dilation. A timer cannot.",
+  },
+  {
+    q: "Are contractions every 4 minutes already past 5-1-1?",
+    a: "A pattern that is closer than every 5 minutes, with contractions lasting at least a minute for an hour, is at least as frequent as 5-1-1. Some providers still want you to call using their own rule, which might be 4-1-1 or 3-1-1. Use the number they gave you.",
+  },
+  {
+    q: "Why did my friend get a different rule?",
+    a: "Birth units and clinicians teach different call-in patterns. Distance from the hospital, a previous fast labor, and individual medical plans are common reasons. There is not one nationwide minute count that fits every pregnancy.",
+  },
+  {
+    q: "What if my contractions never make a neat pattern?",
+    a: "Some labors stay irregular for a long time, and some practice contractions come and go. An irregular log is still information. Call if you are worried, if you think labor has started, or if any warning sign is present. You do not have to wait for a perfect grid.",
+  },
+];
+
+const sources = [
+  {
+    href: "https://www.acog.org/womens-health/faqs/how-to-tell-when-labor-begins",
+    label: "ACOG: How to Tell When Labor Begins",
+  },
+  {
+    href: "https://www.nhs.uk/pregnancy/labour-and-birth/signs-that-labour-has-begun/",
+    label: "NHS: Signs that labour has begun",
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  jsonLd={[
+    faqJsonLd(faqs),
+    breadcrumbJsonLd([
+      { name: "Contraction timer", path: "/" },
+      { name: "The 5-1-1 rule", path },
+    ]),
+  ]}
+>
+  <article class="wrap prose">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Timer</a></li>
+        <li aria-current="page">The 5-1-1 rule</li>
+      </ol>
+    </nav>
+    <p class="eyebrow">A teaching pattern, not a diagnosis</p>
+    <h1>The 5-1-1 rule</h1>
+    <p class="lede">
+      Every 5 minutes, lasting 1 minute, for 1 hour. It is a common way to describe a contraction pattern worth a phone call — and it is not a measure of how dilated you are.
+    </p>
+    <MedicalNote />
+
+    <p>
+      The 5-1-1 rule is a memory aid used in many U.S. childbirth classes and hospital handouts. It is not a lab result. It does not appear, as a slogan, in the American College of Obstetricians and Gynecologists patient FAQ on how to tell when labor begins. That FAQ does say that labor contractions tend to form a regular pattern, get closer over time, and often last about 60 to 90 seconds, and it tells you to call your provider if you think you are in labor. The 5-1-1 phrase is a practical translation some educators use for "regular, closer, and long enough, and not just for two contractions."
+    </p>
+    <p>
+      NHS public pages take a related but not identical line: contact your midwife or maternity unit if you think labour has started, or if you are having regular contractions about every five minutes or more often. They also list urgent reasons to call that should not wait for any pattern at all. If you are in the UK, the maternity unit's own line is the instruction that counts. If you are elsewhere, it is the number on your birth plan.
+    </p>
+
+    <h2>What each number is asking</h2>
+    <p>
+      The first <strong>5</strong> is frequency: about every five minutes from the start of one contraction to the start of the next. "About" matters, and so does direction. Contractions every four minutes are more frequent than every five. Contractions every eight minutes have not reached this description. Measure start to start, not the rest gap. A contraction of one minute followed by five quiet minutes is six minutes apart, not five. The <a href="/how-to-time-contractions">timing guide</a> shows that arithmetic in a table.
+    </p>
+    <p>
+      The <strong>1</strong> in the middle is duration: each contraction lasts about a minute, sometimes stated as at least a minute. A run of strong-feeling but 30-second tightenings is a different pattern, even if the starts are close. Length is from the beginning of the tightening until it eases.
+    </p>
+    <p>
+      The last <strong>1</strong> is time: the pattern has continued for about an hour. Three neat contractions do not make an hour. The point of the hour is to see whether the rhythm holds or whether it was a cluster that faded when you sat down, drank water, or got in the shower. ACOG specifically suggests noticing whether contractions continue with rest and hydration. If they go away, they are less likely to be labor contractions, though you can still call if you are unsure.
+    </p>
+
+    <h2>4-1-1 and 3-1-1</h2>
+    <p>
+      Some clinicians and birth units teach a closer pattern before they want you to come in, or a closer pattern as the moment to leave home because the drive is long. You will hear 4-1-1 (about every four minutes, lasting a minute, for an hour) and 3-1-1 (about every three minutes, lasting a minute, for an hour). The middle and last numbers are the same idea. Only the spacing changes.
+    </p>
+    <p>
+      Why the difference? Practices are local. A unit that often sees people arrive in very early labor may teach a closer pattern so that the trip happens later. A clinician who knows you live an hour away, or who knows your last labor moved quickly once it established, may want the earlier call. Someone with a planned cesarean, a previous cesarean, twins, high blood pressure, or an induction plan may be given instructions that ignore 5-1-1 entirely. None of those situations can be read off a general article. The honest summary is that providers differ, and the rule you were given in prenatal care outranks a rule you found later.
+    </p>
+    <p>
+      This site's timer lets you pick 5-1-1, 4-1-1, or 3-1-1 for that reason. The banner uses the rule you select. It does not try to guess which one your hospital prefers. If you were told "call at 4-1-1," set the timer to 4-1-1 before you need it.
+    </p>
+
+    <h2>What the pattern cannot tell you</h2>
+    <p>
+      Cervical dilation is felt or seen by a clinician. A contraction pattern does not report centimeters. People can have a convincing 5-1-1 pattern and still be in early labor. People can also progress with contractions that look messy on paper, especially if most of the sensation is in the back, or if they have given birth before and things move in a rush once they change. The banner on the <a href="/">contraction timer</a> is worded as a timing observation plus a suggestion to contact your provider. It is not a finding of "active labor," and it should not be read that way to anyone, including yourself at 3 a.m.
+    </p>
+    <p>
+      The banner also only knows the rows in the log. If you forgot to press stop, the length is wrong. If you delete a contraction, the gaps on either side join into one larger gap and the pattern is recalculated. If contractions pause for longer than the spacing you selected, the banner turns off, because a pattern that has stopped is not an ongoing hour of that pattern. Editing a mistaken time is appropriate. Editing a row so the grid looks like the rule you hoped for is not.
+    </p>
+    <p>
+      There is a short grace period so the message does not vanish in the minute you are waiting for the next start. It is not an excuse to ignore a clear slowdown. If the log and your body disagree, believe the need to call rather than the absence of a banner.
+    </p>
+
+    <h2>When 5-1-1 is the wrong thing to wait for</h2>
+    <p>
+      Do not sit through an hour of timing if your waters have broken, you are bleeding, the baby is moving less, you are under 37 weeks, a contraction lasts more than two minutes, or you are having six or more contractions in ten minutes. Those are reasons to contact a provider now. Call emergency services if you think birth is imminent. The <a href="/when-to-go-to-the-hospital">when to go</a> page lists these in checklist form.
+    </p>
+    <p>
+      Also call, even with a "weak" log, if you were told your pregnancy needs an earlier look, if you have a headache with vision changes, sudden swelling, or trouble breathing, or if something simply feels wrong and you cannot explain it. Instinct is not a diagnosis either, but public guidance is consistent on this point: uncertainty is a reason to phone, not a reason to wait for a textbook pattern.
+    </p>
+    <p>
+      If you want the pattern on paper before you rely on a screen, print the <a href="/printable-contraction-log">contraction log</a> and write the rule your provider named at the top. A support person can keep that sheet while you use the timer, or instead of it. The <a href="/braxton-hicks-vs-real-contractions">Braxton Hicks comparison</a> may help if the contractions are irregular and you are trying to decide whether to keep timing or to rest and see.
+    </p>
+
+    <Faq faqs={faqs} />
+    <Sources links={sources} />
+    <Related current={path} />
+  </article>
+  <AdSlot />
+</BaseLayout>

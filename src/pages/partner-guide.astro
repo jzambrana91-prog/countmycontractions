@@ -1,0 +1,134 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MedicalNote from "../components/MedicalNote.astro";
+import AdSlot from "../components/AdSlot.astro";
+import Faq from "../components/Faq.astro";
+import Related from "../components/Related.astro";
+import Sources from "../components/Sources.astro";
+import { breadcrumbJsonLd, faqJsonLd } from "../data/site.js";
+
+const title = "Contraction Timer Guide for Partners | Count My Contractions";
+const description =
+  "How a partner or doula can run the contraction timer, what to write down, and how to support someone in labor without turning the app into a diagnosis.";
+const path = "/partner-guide";
+
+const faqs = [
+  {
+    q: "Should I press the button or should they?",
+    a: "Whoever can do it accurately. Many people want their partner to run the timer so they can stay inward. Others hate being asked if a contraction has started. Decide during pregnancy, and change the plan if it is not working in the moment.",
+  },
+  {
+    q: "What do I do when the banner says the pattern matches?",
+    a: "Tell them calmly, then follow the call plan you already agreed on. The banner means the logged timing matches the rule you selected. It does not measure dilation and it is not an order to get in the car without phoning, unless your provider told you to come straight in.",
+  },
+  {
+    q: "How do I time a contraction if they cannot talk?",
+    a: "Watch for the signs you learned from them: a pause, a hand on the belly, a sound, swaying that becomes still. Start then, and stop when their body softens and they come back. If you are unsure, say so in the log rather than pretending the time was exact.",
+  },
+  {
+    q: "What if I think the baby is coming before we leave?",
+    a: "Call emergency services. Say you are with someone who is pregnant and that birth may be imminent. Stay on the phone. Do not start a drive if they are pushing or you can see the baby.",
+  },
+];
+
+const sources = [
+  {
+    href: "https://www.acog.org/womens-health/faqs/how-to-tell-when-labor-begins",
+    label: "ACOG: How to Tell When Labor Begins",
+  },
+  {
+    href: "https://www.nhs.uk/pregnancy/labour-and-birth/signs-that-labour-has-begun/",
+    label: "NHS: Signs that labour has begun",
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  jsonLd={[
+    faqJsonLd(faqs),
+    breadcrumbJsonLd([
+      { name: "Contraction timer", path: "/" },
+      { name: "Partner guide", path },
+    ]),
+  ]}
+>
+  <article class="wrap prose">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Timer</a></li>
+        <li aria-current="page">Partner guide</li>
+      </ol>
+    </nav>
+    <p class="eyebrow">For the person holding the phone</p>
+    <h1>A partner and doula guide to the contraction timer</h1>
+    <p class="lede">
+      Your job is the clock, the call plan, and a calm room. The timer is a notebook with a large button, not a judge of how labor is going.
+    </p>
+    <MedicalNote />
+
+    <p>
+      If you are the partner, friend, or doula, you may be the person most able to press a button. The laboring person may want their attention somewhere else entirely. This guide is for that role. It assumes you have already opened the <a href="/">contraction timer</a>, ideally once before labor so the page can work offline and so the screen is not new at midnight.
+    </p>
+    <p>
+      Agree on two cues while everyone is still conversational. One is how a contraction will be marked: they press the button, you press it when they nod, or you press it from the signs you know. The other is the phone number and the pattern their provider asked for — 5-1-1, 4-1-1, 3-1-1, or something more specific. Write the number on paper. A locked phone is a bad filing cabinet.
+    </p>
+
+    <h2>How to run the timer</h2>
+    <p>
+      The start button is meant to be hit with one hand, without precision. Press it when the contraction begins, not at the worst moment. Press stop when the tightening eases. The big numbers are the length of the one that is happening now. Under that, each saved row shows the start time, the length, how far apart the starts were, and the rest gap. "Apart" is start to start. If you are asked "how far apart," read that column, not the rest column. The <a href="/how-to-time-contractions">timing page</a> explains why those numbers differ.
+    </p>
+    <p>
+      The screen wakes and stays lit during an active contraction where the phone allows a wake lock. Keep the brightness low enough for a dark room. If they want silence, do not narrate every second. A quiet "started" and "eased" is plenty, and only if they asked for it.
+    </p>
+    <p>
+      Mistakes are normal. If you start late, edit the start time. If you forget to stop, edit the end. If you log a cramp that they say was not a contraction, delete that row. Undo puts the last change back, which is there so a fumble does not become a panic. Clear the whole session only when you mean to, and only with the confirmation. After a clear, undo still works until the next action.
+    </p>
+    <p>
+      Newest contractions sit at the top so you can see the latest interval without scrolling through the afternoon. When you copy the log for a text, or print it, the list is oldest first, which is easier for a clinician to read straight through. "Copy for a text" is the button to use when the birth unit asks for the pattern and talking is hard.
+    </p>
+
+    <h2>What the banners mean, and what to say</h2>
+    <p>
+      If you selected 5-1-1 and the log shows contractions about every five minutes or closer, each lasting at least a minute, across at least an hour, a banner appears. It suggests contacting the provider or birth unit. Say that in ordinary language: "The log matches the pattern they asked us to call about. I'm going to phone." Then phone. Do not announce "you're in active labor." You do not know the dilation, and the app does not either. The <a href="/5-1-1-rule">5-1-1 page</a> is the longer explanation if you want it before the day.
+    </p>
+    <p>
+      A separate note appears if a contraction runs longer than two minutes, or if six or more have started in ten minutes. Those are reasons to call even if the 5-1-1 banner is not up. You can read the safety box at the top of the timer out loud once, early, so it is not a surprise later. It covers broken waters, bleeding, reduced movement, contractions before 37 weeks, a very long contraction, and that close cluster. The <a href="/when-to-go-to-the-hospital">when to go</a> page is the checklist form of the same advice.
+    </p>
+    <p>
+      If they think they felt a trickle or a pop, or they see blood, you stop debating the interval and you call. Ask the questions the unit will ask, without turning it into an interview: when it happened, what color, whether the baby has been moving, how many weeks. Then let them speak to the midwife or nurse themselves if they can. Clinicians often want the laboring person's voice, not a polished summary from the hallway.
+    </p>
+
+    <h2>Support that is not the timer</h2>
+    <p>
+      The phone is a small part of the hour. Between contractions, offer water, a cool cloth, a dark room, the bathroom, and a change of position if they want one. Low voices help. So does sitting nearby without filling the rest gap with questions. Ask what they want once, then follow it. Suggestions are welcome when they are easy to refuse.
+    </p>
+    <p>
+      Rest and fluids are part of how people tell practice contractions from labor. If tightenings fade after they lie down and drink, that is useful information for the log, not a reason to be disappointed in them. The <a href="/braxton-hicks-vs-real-contractions">Braxton Hicks comparison</a> is written for that uncertainty. Your role is not to talk them into believing it is labor, or out of calling because the grid looks messy.
+    </p>
+    <p>
+      Follow the birthplace's existing advice about eating and drinking. Do not introduce a new rule from a search result. If they have a plan for comfort — a playlist, a shower, a particular chair — you are the person who can set it up while they are inside a contraction. A doula may already be doing some of this. You do not have to compete. Trade the timer if they ask, and say when you hand it over so the definition of "start" stays the same.
+    </p>
+
+    <h2>Leaving, and not leaving</h2>
+    <p>
+      Have the route, the backup route, and the bag thought through in advance. ACOG suggests actually rehearsing the drive so traffic is not a surprise. When you are told to come in, drive like a careful person, not like a film. Contractions in a car are miserable and still not a reason to speed. If they have a strong urge to push, or you think the baby is about to be born, do not start the trip. Call emergency services and stay put with the phone on speaker.
+    </p>
+    <p>
+      If you are sent home, resist the urge to apologize for the log. The record did its job. Ask what to watch next, write it down, and help them rest. Keep the same session if the pattern might continue, so the hour stays intact.
+    </p>
+    <p>
+      A <a href="/printable-contraction-log">paper log</a> can sit in the bag if the phone will be busy with the call. Pick one main record once contractions are regular.
+    </p>
+    <p>
+      At the end of a long early labor, the most useful thing you can say is often small. "I'm here. The last one was a minute. You don't have to talk." The timer will keep the rest.
+    </p>
+
+    <Faq faqs={faqs} />
+    <Sources links={sources} />
+    <Related current={path} />
+  </article>
+  <AdSlot />
+</BaseLayout>
