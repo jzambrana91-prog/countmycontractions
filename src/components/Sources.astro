@@ -1,0 +1,19 @@
+---
+const { links } = Astro.props;
+---
+
+<section class="sources">
+  <h2>Public pages behind this general guidance</h2>
+  <ul>
+    {
+      links.map((link) => (
+        <li>
+          <a href={link.href}>{link.label}</a>
+        </li>
+      ))
+    }
+  </ul>
+  <p>
+    Those are patient-education pages from well-known health services. Your own provider or birth unit may use a different plan, and that plan is the one to follow.
+  </p>
+</section>

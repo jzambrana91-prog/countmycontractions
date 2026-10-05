@@ -1,0 +1,168 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MedicalNote from "../components/MedicalNote.astro";
+import AdSlot from "../components/AdSlot.astro";
+import Faq from "../components/Faq.astro";
+import Related from "../components/Related.astro";
+import Sources from "../components/Sources.astro";
+import { breadcrumbJsonLd, faqJsonLd } from "../data/site.js";
+
+const title = "Braxton Hicks vs Real Contractions | Count My Contractions";
+const description =
+  "A calm comparison of Braxton Hicks and labor contractions, plus the signs that mean you should call your provider instead of waiting for a pattern.";
+const path = "/braxton-hicks-vs-real-contractions";
+
+const faqs = [
+  {
+    q: "Can Braxton Hicks hurt?",
+    a: "They can be uncomfortable, and some people feel them strongly. Pain alone does not sort practice contractions from labor. The more useful clues are whether a pattern forms, whether they grow longer and closer, and whether they continue after rest and fluids.",
+  },
+  {
+    q: "If I can walk and talk, does that mean it is not labor?",
+    a: "No. Early labor can still leave room to talk, and a strong Braxton Hicks contraction can stop you mid-sentence. Use the pattern over time, not a single contraction's drama.",
+  },
+  {
+    q: "What is the difference between a show and bleeding?",
+    a: "A show is the mucus from the cervix, often sticky and streaked with pink or a little blood. Heavier bleeding is different and is a reason to call your provider or maternity unit promptly, including at night.",
+  },
+  {
+    q: "Should I time every Braxton Hicks contraction?",
+    a: "Timing a short run can satisfy curiosity. Timing all day usually does not. Start a real log when they are recurring enough that you want to know if a pattern is forming, or when your provider told you to start.",
+  },
+];
+
+const sources = [
+  {
+    href: "https://www.acog.org/womens-health/faqs/how-to-tell-when-labor-begins",
+    label: "ACOG: How to Tell When Labor Begins",
+  },
+  {
+    href: "https://www.nhs.uk/pregnancy/labour-and-birth/signs-that-labour-has-begun/",
+    label: "NHS: Signs that labour has begun",
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  jsonLd={[
+    faqJsonLd(faqs),
+    breadcrumbJsonLd([
+      { name: "Contraction timer", path: "/" },
+      { name: "Braxton Hicks vs labor", path },
+    ]),
+  ]}
+>
+  <article class="wrap prose">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Timer</a></li>
+        <li aria-current="page">Braxton Hicks vs labor</li>
+      </ol>
+    </nav>
+    <p class="eyebrow">Sorting the tightenings</p>
+    <h1>Braxton Hicks vs labor contractions</h1>
+    <p class="lede">
+      Practice contractions and labor contractions can feel alike at the start. The difference shows up in the pattern over time, and only a clinician can tell what your cervix is doing.
+    </p>
+    <MedicalNote />
+
+    <p>
+      Braxton Hicks contractions are tightenings of the uterus that can begin well before labor. ACOG's patient information calls the irregular kind "false" contractions and notes that they are usually less regular and not as strong as labor contractions. They can show up for many weeks. A lot of people notice them at the end of the day. They often ease with rest and drinking water. Labor contractions, by contrast, tend to settle into a pattern and get closer together, and they usually keep going when you lie down.
+    </p>
+    <p>
+      That description is a tendency, not a switch. Some practice contractions are frankly uncomfortable. Some early labor is stop-start for hours. "False labor" is an unfortunate phrase because the contractions are real sensations; they just are not, at that moment, the pattern of progressive labor. You can be unsure and still be doing this correctly. The useful move is to watch the pattern, take care of the basics, and call if you are worried or if a warning sign shows up.
+    </p>
+
+    <h2>A side-by-side comparison</h2>
+    <div class="table-wrap">
+      <table>
+        <caption>General tendencies. Your provider's exam and advice override the table.</caption>
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Braxton Hicks</th>
+            <th scope="col">Labor contractions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Rhythm</th>
+            <td>Often irregular. The gaps jump around.</td>
+            <td>Usually develop a repeating pattern.</td>
+          </tr>
+          <tr>
+            <th scope="row">Over time</th>
+            <td>Do not steadily get closer.</td>
+            <td>Often get closer together.</td>
+          </tr>
+          <tr>
+            <th scope="row">Length</th>
+            <td>Often stay short or unpredictable.</td>
+            <td>Often lengthen, commonly toward a minute or more.</td>
+          </tr>
+          <tr>
+            <th scope="row">Strength</th>
+            <td>May feel tight, then fade. Sometimes strong.</td>
+            <td>Usually become stronger and harder to ignore.</td>
+          </tr>
+          <tr>
+            <th scope="row">Rest, fluids, a change of position</th>
+            <td>Often ease or stop.</td>
+            <td>Usually continue.</td>
+          </tr>
+          <tr>
+            <th scope="row">Where you feel them</th>
+            <td>Often across the front of the belly. This varies.</td>
+            <td>May start in the back and move around. This also varies, including back labor.</td>
+          </tr>
+          <tr>
+            <th scope="row">Cervix</th>
+            <td>No progressive change that a clinician would call labor.</td>
+            <td>The cervix changes. You cannot measure that at home.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Use the table as a lens, then time a run if you need numbers. The <a href="/how-to-time-contractions">how to time contractions</a> page shows start, length, and start-to-start frequency. If the gaps on your <a href="/">contraction timer</a> stay scattered, and the tightenings settle when you rest and drink, you may be dealing with Braxton Hicks. If the starts line up and the lengths grow, treat that as a reason to keep the log and to use the call plan you already have — often described as a <a href="/5-1-1-rule">5-1-1 pattern</a>, or a closer one if your provider said so.
+    </p>
+
+    <h2>What rest and water can tell you</h2>
+    <p>
+      ACOG suggests timing contractions and noticing whether they continue while you rest and drink fluids. If they fade, they are less likely to be labor. This is an observation, not a treatment you have to pass. Lie down on your side if that is comfortable, drink something, and give it a little time unless a warning sign is already present. A warm shower is something many people try in early labor or with practice contractions. If your waters have already broken, ask your provider before you sit in a bath; a shower is a different question, and your own unit may have a preference. Follow the instruction you were given rather than a general tip.
+    </p>
+    <p>
+      Walking is not a scientific test. Labor can pause while you move, and Braxton Hicks can show up on a walk. If movement changes the pattern, write that in the notes. Do not force a long walk to "prove" anything, and do not ignore contractions that continue just because you can still pace the hallway.
+    </p>
+    <p>
+      Prodromal labor is the name some clinicians use for a stretch of contractions that feel organized but do not yet change the cervix much. It can be exhausting, and it can stop and start. If that is the story of your night, you are allowed to call for advice even if the log never quite holds a 5-1-1 pattern. Sleep, if it is available, is reasonable when you have been told it is safe to stay home.
+    </p>
+
+    <h2>Signs that should not wait for a comparison</h2>
+    <p>
+      Stop sorting Braxton Hicks versus labor and contact your provider or birth unit if your waters break, including a trickle. Mention the time and whether the fluid is clear, green, brown, bloody, or has a bad smell. Call for vaginal bleeding that is more than a small streak in mucus. A "show" — sticky mucus, sometimes pink — can appear as the cervix starts to change, and labor may follow soon or not for a while. Heavier bleeding is a different call.
+    </p>
+    <p>
+      Call if the baby is moving less than the pattern you have been feeling, if you are under 37 weeks and think labor may be starting, if any contraction lasts more than two minutes, or if you are having six or more contractions in ten minutes. Call emergency services if you feel a strong urge to push or birth seems to be happening now. A severe headache, vision changes, sudden swelling, or trouble breathing are also reasons to contact a clinician even if the uterus is quiet. The <a href="/when-to-go-to-the-hospital">when to go to the hospital</a> page gathers these into one checklist.
+    </p>
+
+    <h2>How to use the timer while you are still unsure</h2>
+    <p>
+      You can time a short session without committing to a trip. Press start at the beginning and stop when it eases, for long enough to see whether a rhythm appears — often that means more than two contractions. If they scatter, you can clear the session or simply leave it. The log stays on your device either way. If a pattern starts to hold, keep the same session so the hour is visible, and read the averages rather than the single closest pair.
+    </p>
+    <p>
+      Bring a support person into the job if you want company but not a debate. The <a href="/partner-guide">partner guide</a> asks them to record what you report, not to upgrade a sensation into "real labor" or talk you out of a call. Uncertainty is a valid reason to phone the birth unit. You will not be the first person who was told to rest a bit longer, and you will not be the first person who was told to come in.
+    </p>
+    <p>
+      If you like paper for this in-between stage, the <a href="/printable-contraction-log">printable log</a> has a notes column made for comments such as "eased after water" or "kept going while I rested." Those phrases are more helpful than a verdict written in the margin.
+    </p>
+
+    <Faq faqs={faqs} />
+    <Sources links={sources} />
+    <Related current={path} />
+  </article>
+  <AdSlot />
+</BaseLayout>

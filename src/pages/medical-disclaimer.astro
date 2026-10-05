@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MedicalNote from "../components/MedicalNote.astro";
+import { breadcrumbJsonLd, contactEmail } from "../data/site.js";
+
+const title = "Medical Disclaimer | Count My Contractions";
+const description =
+  "Count My Contractions is a timing aid, not medical advice. It does not diagnose labor or replace your midwife, doctor, or birth unit.";
+const path = "/medical-disclaimer";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Contraction timer", path: "/" },
+      { name: "Medical disclaimer", path },
+    ]),
+  ]}
+>
+  <article class="wrap prose">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Timer</a></li>
+        <li aria-current="page">Medical disclaimer</li>
+      </ol>
+    </nav>
+    <h1>Medical disclaimer</h1>
+    <MedicalNote />
+    <p>
+      The articles on this site describe general, publicly available ideas about timing contractions, including patterns such as 5-1-1 that many childbirth classes teach, and warning signs described on patient pages from organizations such as the American College of Obstetricians and Gynecologists and the UK National Health Service. They are educational. They are not written for your specific pregnancy.
+    </p>
+    <p>
+      Labor is individual. A contraction pattern does not measure cervical dilation, the baby's position, or whether it is safe for you to stay home. Only a qualified clinician who can assess you can do that. If you think you are in labor, call your midwife, doctor, or birth unit. If you were given personal instructions — because of a previous cesarean, twins, high blood pressure, a long drive, a prior fast labor, an induction, or any other reason — those instructions override every general rule on this site.
+    </p>
+    <h2>Do not wait on the timer</h2>
+    <p>
+      Contact your provider or birth unit promptly if your waters break, you are bleeding, your baby is moving less, contractions start before 37 weeks, a contraction lasts over 2 minutes, or you have 6 or more contractions in 10 minutes. Call emergency services if birth seems imminent, including a strong urge to push. Do not spend that time refreshing a webpage.
+    </p>
+    <p>
+      The people who publish this site are not your healthcare providers and do not have a clinician-patient relationship with you. Email to {contactEmail} will not be treated as a request for medical care. If you need urgent help, use the phone numbers you were given in prenatal care or your local emergency number.
+    </p>
+    <p>
+      Health information changes, and local hospital policy changes. We try to keep the guides conservative and consistent with mainstream public guidance, and we avoid invented statistics. That effort is not a promise that a page is complete or current for your situation. When you are unsure, the right next step is a phone call to a human who covers your birth unit.
+    </p>
+  </article>
+</BaseLayout>

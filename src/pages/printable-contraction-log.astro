@@ -1,0 +1,182 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MedicalNote from "../components/MedicalNote.astro";
+import AdSlot from "../components/AdSlot.astro";
+import Faq from "../components/Faq.astro";
+import Related from "../components/Related.astro";
+import Sources from "../components/Sources.astro";
+import { breadcrumbJsonLd, faqJsonLd } from "../data/site.js";
+
+const title = "Free Printable Contraction Log Sheet | Count My Contractions";
+const description =
+  "Download and print a free contraction log. Record start, length, start-to-start frequency, and rest, with instructions for filling in each column.";
+const path = "/printable-contraction-log";
+
+const faqs = [
+  {
+    q: "Is this contraction log free to print?",
+    a: "Yes. You can print the sheet on this page or download the PDF. There is no account and no payment. The online timer is free as well, and it keeps the log on your device rather than on a server.",
+  },
+  {
+    q: "What does the apart column mean?",
+    a: "Apart means frequency measured from the start of one contraction to the start of the next. It is not the rest gap. If a contraction starts at 2:00 and the next starts at 2:06, they are 6 minutes apart, even if the first one ended at 2:01.",
+  },
+  {
+    q: "How many contractions should I write down?",
+    a: "A useful record is a run of contractions once a pattern seems to be forming, not every tightenings you felt all week. If you are asked how long the pattern has lasted, a blank hour with no rows is hard to interpret, so note gaps and missed contractions instead of leaving them invisible.",
+  },
+  {
+    q: "Can I use the sheet if I am also using the timer?",
+    a: "Yes. The timer can copy a text summary or print the session already on the phone. The paper sheet is the backup for a dead battery, a shared pen at the birth unit, or a support person who would rather write than tap.",
+  },
+];
+
+const sources = [
+  {
+    href: "https://www.acog.org/womens-health/faqs/how-to-tell-when-labor-begins",
+    label: "ACOG: How to Tell When Labor Begins",
+  },
+  {
+    href: "https://www.nhs.uk/pregnancy/labour-and-birth/signs-that-labour-has-begun/",
+    label: "NHS: Signs that labour has begun",
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  jsonLd={[
+    faqJsonLd(faqs),
+    breadcrumbJsonLd([
+      { name: "Contraction timer", path: "/" },
+      { name: "Printable contraction log", path },
+    ]),
+  ]}
+>
+  <article class="wrap prose">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Timer</a></li>
+        <li aria-current="page">Printable contraction log</li>
+      </ol>
+    </nav>
+    <div class="screen-copy">
+      <p class="eyebrow">Free printable sheet</p>
+      <h1>Printable contraction log</h1>
+      <p class="lede">
+        A one-page labor contraction chart for a pen, plus a plain explanation of what to write in each column. The same timing method powers the <a href="/">contraction timer</a>.
+      </p>
+      <MedicalNote />
+      <p>
+        <a class="button" href="/downloads/contraction-log.pdf" download>Download the PDF</a>
+        <button class="button secondary" type="button" data-print-sheet>Print the sheet</button>
+      </p>
+
+      <p>
+        Paper still earns its place in labor. Phones get dropped in a bathroom, batteries sag after a long early labor, and a nurse may ask for the pattern while you are mid-contraction and not interested in unlocking a screen. A contraction log is a simple table: when each one started, when it eased, how long it lasted, and how far apart the starts were. Filled in steadily, it is more useful than a memory of "they were kind of close."
+      </p>
+      <p>
+        You do not need to start the sheet the first time your belly tightens in the third trimester. Many people feel irregular practice contractions for weeks. Start a fresh log when tightenings are coming often enough that you, or your partner, want a real record to read back. Put the date at the top, and the phone number your provider told you to call after hours. If more than one person might write, agree that one person holds the pen so two clocks do not create two histories.
+      </p>
+
+      <h2>What each column is for</h2>
+      <p>
+        <strong>Start</strong> is the moment the contraction begins, not the moment it hurts most. People describe that beginning in different ways: a building cramp, a back ache that wraps forward, or a belly that turns firm under your hand. Pick the sign you can recognize and use it the same way each time. Write the clock time with the hour and minutes. Seconds matter less than consistency, but if two contractions are close, minutes alone can hide the difference between four minutes and five.
+      </p>
+      <p>
+        <strong>End</strong> is when the tightening has eased, not when you have fully caught your breath. The uterus relaxes, the belly softens, and the peak is over. If you only write down the peak, the length will look shorter than it was and the rest will look longer.
+      </p>
+      <p>
+        <strong>Length</strong> is end minus start. Forty-five seconds is not "about a minute" if you are comparing the log with a 5-1-1 pattern, where the "1" means a contraction lasting about a minute. You can round to the nearest 15 seconds if you are writing fast, but do not round a 40-second contraction up to a minute just to make the column look neat.
+      </p>
+      <p>
+        <strong>Apart</strong> is the column people most often fill in backwards. It is the time from the start you just wrote to the start of the next contraction. Clinicians usually want that start-to-start frequency. It is not the quiet gap. A contraction that starts at 4:10 and lasts one minute, followed by one that starts at 4:15, is five minutes apart. The rest was four minutes. If you write "5 minutes" in the rest sense and "5 minutes" in the frequency sense, you are describing two different patterns. The <a href="/how-to-time-contractions">how to time contractions</a> page walks through a full example with both numbers side by side.
+      </p>
+      <p>
+        <strong>Rest</strong> runs from the end of one contraction to the start of the next. Two logs can both say "every five minutes" while one is a string of long contractions with little pause and the other is short contractions with a long pause. Rest shows that difference.
+      </p>
+      <p>
+        <strong>Notes</strong> are for things the clock does not show. Use the laboring person's own words for strength if they want to offer any: "I can talk," "I can't talk," "I need to sway." Also worth a few words: a position change, a shower, a nap, waters trickling or gushing, the color of fluid, bleeding heavier than mucus streaked with pink, and whether the baby is moving in the usual way. You do not need a novel. "Clear trickle, baby moving, stronger than the last" is enough.
+      </p>
+
+      <h2>How to read the sheet without turning it into a verdict</h2>
+      <p>
+        Many U.S. childbirth classes describe a 5-1-1 pattern: contractions about every five minutes, lasting about a minute, for about an hour. Some units teach 4-1-1 or 3-1-1 instead, especially when home is far from the birthplace or a previous labor moved quickly. The sheet does not decide which rule is yours. Write the pattern your provider already gave you at the top of the page before labor, while everyone is calm. The <a href="/5-1-1-rule">5-1-1 rule page</a> explains why those numbers differ and why none of them measures cervical dilation.
+      </p>
+      <p>
+        Look at the whole hour, not the two closest contractions. A pair five minutes apart does not become "an hour of labor" because you hope it will. Count whether the starts keep landing at that spacing, whether the lengths are really around a minute, and whether the run has continued rather than appearing twice and then fading while you rested. If rest, a bath, or a glass of water sends the contractions away, say so in the notes. That detail is part of the record, not a failure of the chart.
+      </p>
+      <p>
+        Leave a mark when you miss one. "Missed — in the shower" is more honest than a blank that looks like a quiet uterus. If the pattern changes, start a new block of rows or draw a line and write the time you noticed the change. A log that pretends the night was smooth is harder for someone else to trust.
+      </p>
+
+      <h2>When to put the pen down and call</h2>
+      <p>
+        The sheet is for timing, not for waiting out warning signs. Contact your provider or birth unit promptly if your waters break, you are bleeding, the baby is moving less than usual, you are under 37 weeks, a contraction lasts more than two minutes, or contractions are coming six or more times in ten minutes. Call emergency services if birth seems imminent — a strong urge to push, or a baby you can see. Those are reasons to phone, not reasons to finish the page. The <a href="/when-to-go-to-the-hospital">when to go to the hospital</a> checklist puts the same idea in a longer form.
+      </p>
+      <p>
+        If you are asked to wait at home, keep the same sheet and note the time of the call plus what you were told to watch for next. At the birth unit, offer the paper if someone asks about the pattern. The phone timer is a fine substitute. Pick one main log once contractions are regular, so two records do not disagree.
+      </p>
+
+      <h2>Printing tips</h2>
+      <p>
+        The PDF is a landscape page with room to write. Print it when you pack the birth bag, not when contractions are already close. One copy in the bag and one on the fridge is enough. A dull pencil smears; a ballpoint is kinder at 3 a.m. If you prefer the browser sheet below, use "Print the sheet" so the article is left off the paper and the grid is what comes out.
+      </p>
+      <p>
+        The <a href="/">contraction timer</a> uses the same columns and can print or copy a session. The <a href="/partner-guide">partner guide</a> covers running it one-handed. Copy or print from the phone rather than retyping every row.
+      </p>
+
+      <Faq faqs={faqs} />
+      <Sources links={sources} />
+      <Related current={path} />
+    </div>
+
+    <section class="log-sheet" aria-label="Blank contraction log to print">
+      <h2>Contraction log</h2>
+      <p>Count My Contractions · frequency is start to start · timing aid, not medical advice</p>
+      <div class="sheet-meta">
+        <div>Name (optional) <span class="sheet-line"></span></div>
+        <div>Date <span class="sheet-line"></span></div>
+        <div>Provider or birth-unit number <span class="sheet-line"></span></div>
+        <div>Pattern they asked you to watch <span class="sheet-line"></span></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <caption>Write one row per contraction. Apart is from one start to the next start.</caption>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Start</th>
+              <th scope="col">End</th>
+              <th scope="col">Length</th>
+              <th scope="col">Apart</th>
+              <th scope="col">Rest</th>
+              <th scope="col">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              Array.from({ length: 12 }, (_, index) => (
+                <tr class="blank">
+                  <td>{index + 1}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Call your provider now for waters breaking, bleeding, less baby movement, contractions before 37 weeks, a contraction over 2 minutes, or 6 or more contractions in 10 minutes. Call emergency services if birth seems imminent.
+      </p>
+    </section>
+  </article>
+  <AdSlot />
+</BaseLayout>

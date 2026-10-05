@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MedicalNote from "../components/MedicalNote.astro";
+import AdSlot from "../components/AdSlot.astro";
+import { breadcrumbJsonLd, contactEmail } from "../data/site.js";
+
+const title = "About | Count My Contractions";
+const description =
+  "Count My Contractions is a free contraction timer and a set of plain-language labor timing guides. The log stays on your device.";
+const path = "/about";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  jsonLd={[breadcrumbJsonLd([{ name: "Contraction timer", path: "/" }, { name: "About", path }])]}
+>
+  <article class="wrap prose">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Timer</a></li>
+        <li aria-current="page">About</li>
+      </ol>
+    </nav>
+    <h1>About Count My Contractions</h1>
+    <p class="lede">
+      A free contraction timer for labor, plus practical guides on how to time, what 5-1-1 means, and when to call.
+    </p>
+    <MedicalNote />
+    <p class="owner-note">
+      <strong>Owner placeholder.</strong> Add the legal name of the person or organization that publishes this site before you apply for advertising. This version does not invent a biography.
+    </p>
+
+    <p>
+      Count My Contractions is a small, independent website. It exists because timing contractions at night should not require an account, a download from an ad-heavy app store, or a tool that sends your contraction log to someone else's server. The <a href="/">timer</a> runs in the browser. The record stays in localStorage on that phone or computer. You can add the site to a home screen after the first visit and keep using it if the connection drops.
+    </p>
+    <p>
+      The guides explain the same method the timer uses. Frequency is start to start. A printable <a href="/printable-contraction-log">contraction log</a> is there for a pen. The <a href="/5-1-1-rule">5-1-1</a>, 4-1-1, and 3-1-1 patterns are treated as teaching rules that vary by provider, not as a diagnosis. Pages on <a href="/braxton-hicks-vs-real-contractions">Braxton Hicks</a>, <a href="/when-to-go-to-the-hospital">when to call or go in</a>, and the <a href="/partner-guide">partner's job</a> are written to match mainstream public guidance from sources such as ACOG's patient FAQ on labor and NHS maternity pages. They are not a clinic, and they are not personalized advice.
+    </p>
+    <p>
+      The site is aimed at pregnant people and the partners, friends, or doulas supporting them. It is not directed at children. There is no membership, no comment section, and no way for us to see your log, because the log never reaches us.
+    </p>
+    <p>
+      Advertising may be added later through Google AdSense so the site can stay free. Ad spaces are marked and sit outside the timer button. No ad code is loaded in this version. The <a href="/privacy">privacy policy</a> says what would change, and it will be updated before any ad tags go live.
+    </p>
+    <p>
+      If a page is wrong, unclear, or out of step with the public guidance it relies on, write to <a href={`mailto:${contactEmail}`}>{contactEmail}</a>. That mailbox is the contact point for the site. It is not a medical line. Urgent questions about labor belong with your provider, birth unit, or emergency services.
+    </p>
+    <p>
+      The operator's name, mailing address, and any business registration should be added in the placeholder above and on the <a href="/contact">contact page</a> before the site is submitted for ad review. Readers should be able to tell who is responsible for the words.
+    </p>
+  </article>
+  <AdSlot />
+</BaseLayout>

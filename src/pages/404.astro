@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Page not found | Count My Contractions";
+const description = "That page is not on Count My Contractions. The contraction timer and the guides are linked from here.";
+---
+
+<BaseLayout title={title} description={description} path="/404" robots="noindex, follow">
+  <article class="wrap prose">
+    <h1>That page is not here</h1>
+    <p>The timer is on the home page, and the guides are in the menu.</p>
+    <p><a class="button" href="/">Back to the contraction timer</a></p>
+  </article>
+</BaseLayout>

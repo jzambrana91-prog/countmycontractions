@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MedicalNote from "../components/MedicalNote.astro";
+import { breadcrumbJsonLd, contactEmail } from "../data/site.js";
+
+const title = "Contact | Count My Contractions";
+const description =
+  "Contact Count My Contractions by email. The address is for site questions, not for urgent medical advice during labor.";
+const path = "/contact";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  jsonLd={[breadcrumbJsonLd([{ name: "Contraction timer", path: "/" }, { name: "Contact", path }])]}
+>
+  <article class="wrap prose">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Timer</a></li>
+        <li aria-current="page">Contact</li>
+      </ol>
+    </nav>
+    <h1>Contact</h1>
+    <MedicalNote />
+    <p class="owner-note">
+      <strong>Owner placeholder.</strong> The address below is not a working mailbox until you create it. Replace it here, in the footer, and in the privacy policy if you use a different address. Add a mailing address if you want one listed for readers and for an advertising application.
+    </p>
+    <p>
+      Email <a href={`mailto:${contactEmail}`}>{contactEmail}</a> for corrections, broken pages, or questions about the site itself.
+    </p>
+    <p>
+      There is no contact form. The site is static and does not store messages on a server. Email keeps that boundary intact. Please do not send urgent labor questions, photos of bleeding, or medical records. During labor, call your provider, birth unit, or emergency services. The <a href="/when-to-go-to-the-hospital">when to go</a> page lists situations that should not wait for an email reply.
+    </p>
+    <p>
+      If you write about a factual concern, include the page address and the sentence you think is off. Public guidance shifts, and a specific note is easier to check than a general complaint. We cannot offer a personal opinion on your contraction log.
+    </p>
+    <p>
+      For how the log is stored, read the <a href="/privacy">privacy policy</a>. For the limits of the articles, read the <a href="/medical-disclaimer">medical disclaimer</a>.
+    </p>
+  </article>
+</BaseLayout>

@@ -1,0 +1,192 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MedicalNote from "../components/MedicalNote.astro";
+import AdSlot from "../components/AdSlot.astro";
+import Faq from "../components/Faq.astro";
+import { faqJsonLd, guides } from "../data/site.js";
+
+const title = "Contraction Timer & Counter | Count My Contractions";
+const description =
+  "Free contraction timer and counter for labor. Track length, start-to-start frequency, and the 5-1-1 rule. Private — your log stays on this device.";
+
+const faqs = [
+  {
+    q: "Does this contraction timer keep my log on a server?",
+    a: "No. Start times, lengths, and the pattern you select are stored in this browser only, using localStorage. There is no account and, right now, no analytics. Clearing the session, or clearing site data in the browser, removes the log.",
+  },
+  {
+    q: "How far apart does the contraction counter measure?",
+    a: "Frequency is start to start: from the beginning of one contraction to the beginning of the next. That is the usual clinical measurement. Rest, the quieter gap after a contraction eases, is shown as well.",
+  },
+  {
+    q: "What does the 5-1-1 banner mean?",
+    a: "It means the contractions in this log are about every 5 minutes or closer, each lasting at least a minute, across at least an hour, and the pattern is still going. It is a timing observation and a prompt to contact your provider or birth unit. It is not a diagnosis and it does not know how dilated you are.",
+  },
+  {
+    q: "Can I use the timer offline?",
+    a: "After the site has loaded once, a service worker keeps the pages on your device so the timer can be used if the signal drops. You can also add it to your home screen from the browser's share or menu options.",
+  },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Count My Contractions",
+    url: "https://countmycontractions.com/",
+    applicationCategory: "HealthApplication",
+    operatingSystem: "Web",
+    browserRequirements: "Requires JavaScript for the live timer. The guides stay readable without it.",
+    isAccessibleForFree: true,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    description,
+    publisher: {
+      "@type": "Organization",
+      name: "Count My Contractions",
+      url: "https://countmycontractions.com/",
+    },
+  },
+  faqJsonLd(faqs),
+];
+---
+
+<BaseLayout title={title} description={description} path="/" jsonLd={jsonLd}>
+  <div class="wrap">
+    <section class="timer-app" aria-labelledby="timer-heading">
+      <p class="eyebrow">Free contraction counter</p>
+      <h1 id="timer-heading">Contraction timer</h1>
+      <p class="lede">
+        One large button, a live length, and a private log. Built for a phone at 2 a.m.
+      </p>
+
+      <aside class="safety" aria-label="When to contact a provider">
+        <p>
+          <strong>Contact your provider or birth unit now</strong> if your waters break, you are bleeding, your baby is moving less, contractions start before 37 weeks, a contraction lasts over 2 minutes, or you have 6 or more contractions in 10 minutes. Call emergency services if birth seems imminent.
+        </p>
+      </aside>
+
+      <div class="live-block">
+        <p class="live-kicker" id="live-kicker">Current contraction</p>
+        <p class="live-time" id="live-time" role="timer" aria-labelledby="live-kicker">Ready</p>
+      </div>
+
+      <button class="timer-button" type="button" data-timer-toggle aria-label="Start contraction">
+        Start
+      </button>
+      <p class="hint">Press start when the contraction begins. Press stop when it eases.</p>
+
+      <div id="rule-banner" class="banner" role="status" hidden></div>
+      <div id="caution-banner" class="caution" role="status" hidden></div>
+
+      <fieldset class="rules">
+        <legend>Pattern to compare with the log</legend>
+        <div class="rule-options">
+          <label><input type="radio" name="rule" value="5-1-1" checked /> 5-1-1</label>
+          <label><input type="radio" name="rule" value="4-1-1" /> 4-1-1</label>
+          <label><input type="radio" name="rule" value="3-1-1" /> 3-1-1</label>
+        </div>
+        <p class="rule-help" id="rule-help">
+          5-1-1 means about every 5 minutes, lasting at least 1 minute, for 1 hour. Apart is measured start to start.
+        </p>
+      </fieldset>
+
+      <h2 class="visually-hidden">Last hour</h2>
+      <ul class="stats">
+        <li class="stat"><span>In the last hour</span><strong id="stat-count">0</strong></li>
+        <li class="stat"><span>Average length</span><strong id="stat-duration">—</strong></li>
+        <li class="stat"><span>Average time apart</span><strong id="stat-frequency">—</strong></li>
+      </ul>
+
+      <div class="log-head">
+        <h2>This session</h2>
+      </div>
+      <p id="log-empty" class="empty no-print">No contractions yet. When one begins, press Start.</p>
+      <p class="hint no-print" style="text-align:left">Newest first. Apart is start to start. Copied text and the printout list the oldest first.</p>
+      <ol class="log no-print" id="log" aria-label="Contractions, newest first"></ol>
+      <p id="storage-note" class="storage-note" hidden>
+        This browser is not saving the log on the device. It will last only while this page stays open.
+      </p>
+
+      <div class="toolbar no-print">
+        <button class="ghost" type="button" id="undo">Undo</button>
+        <button class="ghost" type="button" id="copy-log">Copy for a text</button>
+        <button class="ghost" type="button" id="print-log">Print / PDF</button>
+        <button class="ghost" type="button" id="clear-log">Clear session</button>
+      </div>
+      <p class="status" id="action-status" role="status"></p>
+      <label class="visually-hidden" for="copy-fallback">Contraction log text</label>
+      <textarea id="copy-fallback" hidden rows="8" readonly></textarea>
+
+      <MedicalNote />
+      <p class="hint" style="text-align:left">
+        After the first visit this page works offline, and you can add it to your home screen from the browser menu.
+      </p>
+    </section>
+
+    <article class="prose home-extra">
+      <h2>What this contraction counter records</h2>
+      <p>
+        Each row stores the clock time when you pressed start, how long the contraction lasted, how far apart it was from the one before it, and the rest gap in between. Frequency is always start to start, because that is how clinicians usually ask the question: "How far apart are they?" The rest column is there so a long contraction is not mistaken for contractions that are truly close together.
+      </p>
+      <p>
+        Averages cover the last hour only: how many contractions started, the average length of the finished ones, and the average start-to-start gap. The 5-1-1, 4-1-1, and 3-1-1 choices are patterns many birth classes teach. When the log shows the selected pattern across an hour, and it is still going, a calm banner suggests you contact your provider or birth unit. The banner is not a diagnosis, and it cannot see contractions you did not record.
+      </p>
+      <p>
+        Nothing on this page is sent to us. The session lives in localStorage on your phone. Undo puts back the last start, stop, edit, delete, or clear. Use the copy button when someone asks you to text the pattern, or print a clean list for a paper chart.
+      </p>
+      <h2>Guides</h2>
+      <ul>
+        {guides.map((guide) => (
+          <li><a href={guide.href}>{guide.label}</a></li>
+        ))}
+      </ul>
+      <Faq faqs={faqs} />
+    </article>
+    <AdSlot />
+  </div>
+
+  <section class="print-only wrap" aria-hidden="true">
+    <h1>Contraction log</h1>
+    <p>Count My Contractions · <span id="print-when"></span></p>
+    <p id="print-summary"></p>
+    <table>
+      <caption>Oldest first. Apart is start to start.</caption>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Start</th>
+          <th scope="col">End</th>
+          <th scope="col">Length</th>
+          <th scope="col">Apart</th>
+          <th scope="col">Rest</th>
+        </tr>
+      </thead>
+      <tbody id="print-body"></tbody>
+    </table>
+    <p>
+      Contact your provider now for broken waters, bleeding, reduced baby movement, contractions before 37 weeks, a contraction over 2 minutes, or 6 or more contractions in 10 minutes. Call emergency services if birth seems imminent. Timing aid, not medical advice.
+    </p>
+  </section>
+
+  <dialog id="clear-dialog" aria-labelledby="clear-title">
+    <h2 id="clear-title">Clear this session?</h2>
+    <p>This removes the contractions stored on this device. You can undo a clear until you take another action.</p>
+    <div class="dialog-actions">
+      <button class="button secondary" type="button" id="clear-cancel">Keep log</button>
+      <button class="button" type="button" id="clear-confirm">Clear session</button>
+    </div>
+  </dialog>
+
+  <p id="announce" class="visually-hidden" aria-live="polite"></p>
+  <noscript>
+    <p class="wrap">The live timer needs JavaScript. The written guides and the printable log still work.</p>
+  </noscript>
+
+  <script>
+    import "../scripts/timer.js";
+  </script>
+</BaseLayout>
